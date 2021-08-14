@@ -1,4 +1,4 @@
-import { connect } from 'mongoose';
+import * as mongoose from 'mongoose';
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
@@ -26,7 +26,7 @@ app.listen(port, () => {
 
 const url = process.env.MONGODB_URL || 'mongodb://localhost:27017/test';
 
-connect( url, {
+mongoose.connect( url, {
 
     useNewUrlParser: true,
     useCreateIndex: true,
