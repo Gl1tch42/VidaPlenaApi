@@ -1,5 +1,7 @@
 import { Router, Request, Response  } from "express";
 
+
+
 const routes = Router();
 
 // router.post('/register', userCrtl.register);
