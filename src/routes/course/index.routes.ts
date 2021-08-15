@@ -1,16 +1,15 @@
 import { Router, Request, Response  } from "express";
 
+import courseCtrl from "./../../controller/course.controller";
+
+import auth from "./../../middlewares/auth.middleware";
+
+const router = Router();
+
+router.get('/getVideos', auth, courseCtrl.getVideos);
+
+router.post('/getVideoById', auth, courseCtrl.getVideoById);
 
 
-const routes = Router();
 
-// router.post('/register', userCrtl.register);
-
-// router.post('/login', userCrtl.login);
-
-// router.get('/logout',userCrtl.logout);
-
-// router.get('/refresh_token', userCrtl.refreshToken)
-
-
-export default routes;
+export default router;

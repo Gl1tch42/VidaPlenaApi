@@ -11,7 +11,11 @@ const app = express();
 
 // serve configuration
 app.use(helmet());
-app.use(cors());
+app.use(cors(
+    {
+        origin: '*',
+    }
+));
 app.use(express.json());
 
 // start routes

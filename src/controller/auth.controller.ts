@@ -88,6 +88,8 @@ const userCtrl = {
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) return res.status(400).json({msg:'incorret password'});
 
+            const user2 = await User.findOne({email}).select('-password');
+
             const accessToken = createAccessToken({id: user._id});
             const refreshToken = creatRefreshToken({id: user._id});
 
@@ -98,7 +100,7 @@ const userCtrl = {
             });
 
 
-            return res.json({accessToken});
+            return res.json({accessToken, user2});
 
         } catch (err) {
             return res.status(500).json({msg: err.message});
