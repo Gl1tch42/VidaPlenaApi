@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
 
+// import * as bcrypt from 'bcrypt';
+// import * as jwt from 'jsonwebtoken';
+
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -9,13 +12,13 @@ import User from "./../models/user";
 
 
 const creatRefreshToken = (userId: any) => {
-    return jwt.sign(userId, process.env.REFRESH_TOKEN_SECRET,{
+    return jwt.sign(userId, "BUIY!23892s91d91!H@fswe5s182deb281ncBG98g777&¨T¨Te76&*t8G",{
         expiresIn:'7d'
     })
 }
 
 const createAccessToken = (userId: any) =>{
-    return jwt.sign(userId, process.env.ACCESS_TOKEN_SECRET,{
+    return jwt.sign(userId, "BUIY!23892s91d91!H@fswe5s182deb281ncBG98g777&¨T¨Te76&*t8G",{
       expiresIn: '11m'
     })
 }
@@ -124,7 +127,7 @@ const userCtrl = {
             const rf_token = req.cookies.refreshtoken;
             if(!rf_token) return res.status(400).json({msg: "Please Login or Register"});
 
-            jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET, (err: Error, user: any) => {
+            jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET || 'BUIY!23892s91d91!H@fswe5s182deb281ncBG98g777&¨T¨Te76&*t8G', (err: Error, user: any) => {
                 if (err) return res.status(400).json({msg: "Please Login or Register"});
 
                 const accessToken = createAccessToken({id: user.id});

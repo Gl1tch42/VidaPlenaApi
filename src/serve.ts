@@ -1,9 +1,10 @@
-import * as mongoose from 'mongoose';
+import { connect } from 'mongoose';
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import routes from "./routes/index.routes";
 
+// import dotenv from "dotenv/config.js";
 require('dotenv').config();
 
 const app = express();
@@ -24,16 +25,16 @@ app.listen(port, () => {
 
 // mongo connection
 
-const url = process.env.MONGODB_URL || 'mongodb://localhost:27017/test';
+const url = process.env.MONGODB_URL || 'mongodb://localhost:27017/VIDA_PLENA';
 
-mongoose.connect( url, {
+connect(url, {
 
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
     useUnifiedTopology: true
 
-},err => {
-        if (err) throw err
-        console.log('dataBase are connect!');
+}, err => {
+    if (err) throw err
+    console.log('dataBase are connect!');
 });
